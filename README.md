@@ -33,20 +33,31 @@ Last, create your script! :-)
 Direct.js uses both the `_` and `direct` variables. You could map them to any other variables you wish. For the sake of this article, we will use the shorthand `_` variable.
 
 ```javascript
-_(controller[, action = "common"], function|object)
+_(controller[, action = "common"], function|Object)
 ```
+
+If you specify a function but not `action`, the `action` will default to 'common'. If you specify an Object, the Object can contain functions or properties.
 
 ### Examples
 ```javascript
 _("utils", {
   hello: function () { alert("Hello World!"); },
-  common: function () {
+  common: function (utils) {
     // Code that goes on every page goes here
-  }
+    document.title = utils.pageTitle.replace(utils.rightTrim, '');
+  },
+  rightTrim: /\s+$/
+});
+
+_("utils", "config", {
+  fancybox: {...},
+  pageTitle: "Direct.js is Awesome! "
 });
 
 _("pages", "home", function (utils) {
   utils.hello();
+
+  $("a[class=fancy]").fancybox(utils.config.fancybox);
 });
 ```
 
