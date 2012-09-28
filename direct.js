@@ -71,10 +71,7 @@ window._ = window.direct = (function (window, document)
 				return false;
 			}
 
-			if (!lib[controller])
-			{
-				lib[controller] = {};
-			}
+			lib[controller] = lib[controller] || {};
 
 			if (!!lib[controller][action])
 			{
