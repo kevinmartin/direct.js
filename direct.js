@@ -6,55 +6,40 @@
  * Released under the MIT license
  * https://github.com/KevinMartin/direct.js/blob/master/LICENSE
  */
-window._ = window.direct = (function (window, document)
-{
+window._ = window.direct = (function (window, document) {
 	var lib		= {},
 		loaded	= false,
-		onload	= function (func) // IE7+, FF, Chrome, Safari, WebKit
-		{
-			if (document.addEventListener)
-			{
+		onload	= function (func) { // IE7+, FF, Chrome, Safari, WebKit
+			if (document.addEventListener) {
 				document.addEventListener("DOMContentLoaded", func, false);
 				window.addEventListener("load", func, false);
-			}
-			else if (document.attachEvent)
-			{
+			} else if (document.attachEvent) {
 				document.attachEvent("onreadystatechange", func);
 				window.attachEvent("onload", func);
 			}
 		},
-		call = function (controller, action, common) // call(controller, action[, common = true])
-		{
-			if (!!lib[controller])
-			{
-				if (common !== false && !!lib[controller].common && action !== "common")
-				{
+		call = function (controller, action, common) { // call(controller, action[, common = true])
+			if (!!lib[controller]) {
+				if (common !== false && !!lib[controller].common && action !== "common") {
 					lib[controller].common(lib.utils);
 				}
 
-				if (!!lib[controller][action])
-				{
+				if (!!lib[controller][action]) {
 					lib[controller][action](lib.utils);
 				}
 			}
 		},
-		direct = function (controller, action, func) // direct(controller[, action = 'common'], function|object)
-		{
+		direct = function (controller, action, func) { // direct(controller[, action = 'common'], function|object)
 			var i, save;
 
-			if (!controller)
-			{
+			if (!controller) {
 				return lib.utils;
 			}
 
-			if (!func)
-			{
-				if (typeof action === "object")
-				{
-					for (i in action)
-					{
-						if (typeof action[i] === "function")
-						{
+			if (!func) {
+				if (typeof action === "object") {
+					for (i in action) {
+						if (action.hasOwnProperty(i)) {
 							direct(controller, i, action[i]);
 						}
 					}
@@ -66,28 +51,22 @@ window._ = window.direct = (function (window, document)
 				action	= "common";
 			}
 
-			if (!controller.length || !action.length || typeof func !== "function")
-			{
+			if (typeof controller !== "string" || typeof action !== "string") {
 				return false;
 			}
 
 			lib[controller] = lib[controller] || {};
 
-			if (!!lib[controller][action])
-			{
+			if (!!lib[controller][action] && typeof lib[controller][action] === "function") {
 				save					= lib[controller][action];
 				lib[controller][action]	= function () { save(); func(); };
-			}
-			else
-			{
+			} else {
 				lib[controller][action] = func;
 			}
 		};
 
-	onload(function ()
-	{
-		if (!loaded && (loaded = true))
-		{
+	onload(function () {
+		if (!loaded && (loaded = true)) {
 			var controller	= document.body.getAttribute("data-controller"),
 				action		= document.body.getAttribute("data-action");
 
@@ -96,8 +75,7 @@ window._ = window.direct = (function (window, document)
 		}
 	});
 
-	if (typeof define === "function")
-	{
+	if (typeof define === "function") {
 		define("direct", [], function () { return direct; });
 	}
 
