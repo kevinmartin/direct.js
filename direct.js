@@ -4,7 +4,7 @@
  *
  * Copyright 2012 Kevin Martin and other contributors
  * Released under the MIT license
- * https://github.com/KevinMartin/direct.js/LICENSE
+ * https://github.com/KevinMartin/direct.js/blob/master/LICENSE
  */
 window._ = window.direct = (function (window, document)
 {
