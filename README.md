@@ -20,7 +20,7 @@ Then, include Direct.js using either the `<script>` tag or, if you're using an A
 
 ### Examples
 ```html
-<script src="js/vendor/direct.js"></script>
+<script src="/js/vendor/direct.js"></script>
 ```
 or
 ```javascript
@@ -30,7 +30,7 @@ var _ = require("direct");
 Last, create your script! :-)
 
 ## Usage
-Direct.js uses both the `_` and `direct` variables. You could map them to any other variables you with. For the sake of this article, we will use the shorthand `_` variable.
+Direct.js uses both the `_` and `direct` variables. You could map them to any other variables you wish. For the sake of this article, we will use the shorthand `_` variable.
 
 ```javascript
 _(controller[, action = "common"], function|object)
