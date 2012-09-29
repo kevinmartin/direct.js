@@ -39,7 +39,8 @@ _(controller[, action = "common"], function|object)
 ### Examples
 ```javascript
 _("utils", {
-  hello: function () { alert("Hello World!"); },
+  hello: function () { alert("Hello "); },
+  world: function () { alert("World!"); },
   common: function () {
     // Code that goes on every page goes here
   }
@@ -47,6 +48,7 @@ _("utils", {
 
 _("pages", "home", function (utils) {
   utils.hello();
+  this.world();
 });
 ```
 
@@ -55,6 +57,6 @@ _("pages", "home", function (utils) {
 * `[controller].common()`
 * `[controller].[action]()`
 
-When your anonymous function is executed, one argument is passed: `utils`. This will contain all of the "libary" code you put in `_("utils", ...)`.
+When your anonymous function is executed, one argument is passed: `utils`. This will contain all of the "libary" code you put in `_("utils", ...)`. You may also use `this` instead.
 
 Please fork and improve.

@@ -1,5 +1,5 @@
 /*!
- * Direct.js JavaScript Library v0.1.0
+ * Direct.js JavaScript Library v0.1.1
  * https://github.com/KevinMartin/direct.js
  *
  * Copyright 2012 Kevin Martin and other contributors
@@ -21,11 +21,11 @@ window._ = window.direct = (function (window, document) {
 		call = function (controller, action, common) { // call(controller, action[, common = true])
 			if (!!lib[controller]) {
 				if (common !== false && !!lib[controller].common && action !== "common") {
-					lib[controller].common(lib.utils);
+					lib[controller].common.call(lib.utils, lib.utils);
 				}
 
 				if (!!lib[controller][action]) {
-					lib[controller][action](lib.utils);
+					lib[controller][action].call(lib.utils, lib.utils);
 				}
 			}
 		},
