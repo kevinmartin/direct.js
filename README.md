@@ -41,7 +41,8 @@ If you specify a function but not `action`, the `action` will default to 'common
 ### Examples
 ```javascript
 _("utils", {
-  hello: function () { alert("Hello World!"); },
+  hello: function () { alert("Hello "); },
+  world: function () { alert("World!"); },
   common: function (utils) {
     // Code that goes on every page goes here
     document.title = utils.pageTitle.replace(utils.rightTrim, '');
@@ -56,6 +57,7 @@ _("utils", "config", {
 
 _("pages", "home", function (utils) {
   utils.hello();
+  this.world();
 
   $("a[class=fancy]").fancybox(utils.config.fancybox);
 });
@@ -66,6 +68,6 @@ _("pages", "home", function (utils) {
 * `[controller].common()`
 * `[controller].[action]()`
 
-When your anonymous function is executed, one argument is passed: `utils`. This will contain all of the "libary" code you put in `_("utils", ...)`.
+When your anonymous function is executed, one argument is passed: `utils`. This will contain all of the "libary" code you put in `_("utils", ...)`. The keyword `this` also contains a reference to `utils`.
 
 Please fork and improve.
