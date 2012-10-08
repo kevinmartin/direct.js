@@ -7,7 +7,7 @@ Direct.js - DOM-based routing/execution script
 * _Viget_ - [Extending Paul Irish’s comprehensive DOM-ready execution](http://viget.com/inspire/extending-paul-irishs-comprehensive-dom-ready-execution)
 
 ## Other Links
-* _NPMJS.org_ - [NPM](https://npmjs.org/package/direct-js)
+* _NPMJS.org_ - [NPM](https://npmjs.org/package/direct)
 
 ## How to Use
 Direct.js takes advantage of HTML data-* attributes, yet is still usable with xHTML and HTML4 (and down). First thing is first; place `data-controller=""` and `data-action=""` in the `<body>` tag of your layout:
